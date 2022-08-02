@@ -10,7 +10,6 @@ function App() {
             const response = await fetch('http://localhost:8000/api/posts');
 
             const content = await response.json()
-
             setPosts(content);
         })()
     }, []);
@@ -50,6 +49,9 @@ function App() {
 
         setPosts(posts.map(p => {
             if (p.id === post_id) {
+                if (p.comments == null) {
+                    p.comments = []
+                }
                 p.comments.push(createdComment)
             }
 
